@@ -10,11 +10,9 @@ Fábrica não exige obediência: exige que cada divergência seja uma decisão e
 
 ## Antes
 
-A Fábrica está em `${FABRICA_HOME:-$HOME/.desklabs/fabrica}`. Atualize-a antes de auditar:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/DeskLabs-OpenSource/Fabrica/main/install.sh | bash
-```
+A Fábrica é a pasta `fabrica/` deste produto, adaptada para produto fechado. Leia
+`ADAPTACOES.md` primeiro: os itens marcados "não se aplica", "adaptado" ou "decidido
+diferente" na `conformidade.md` seguem o que ele diz. Não baixe a Fábrica de endereço público.
 
 Leia `conformidade.md` inteiro e `licoes.md` inteiro. Leia o capítulo do manual de cada seção
 antes de julgar os itens dela.

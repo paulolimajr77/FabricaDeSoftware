@@ -2,7 +2,8 @@
 # Instala ou atualiza a Fábrica nesta máquina: baixa o repositório e liga as skills nas pastas
 # globais dos assistentes de código.
 #
-#   curl -fsSL https://raw.githubusercontent.com/DeskLabs-OpenSource/Fabrica/main/install.sh | bash
+#   bash install.sh --fonte .     liga as skills desta cópia. É o único modo do ThothAds.
+#   (não há mais instalação por curl: a origem pública é o original sem as adaptações)
 #   bash install.sh --fonte .     usa esta pasta em vez de baixar (para quem edita a Fábrica)
 #   bash install.sh --remover     desfaz as ligações (não apaga a cópia)
 #
@@ -21,7 +22,7 @@ eh_nossa() {
 }
 
 principal() {
-  local repo_url="${FABRICA_REPO_URL:-https://github.com/DeskLabs-OpenSource/Fabrica.git}"
+  local repo_url="${FABRICA_REPO_URL:-}"
   local casa="${FABRICA_HOME:-$HOME/.desklabs/fabrica}"
   case "$casa" in /*) ;; *) casa="$PWD/$casa" ;; esac
 
@@ -55,6 +56,7 @@ principal() {
     [ -d "$fonte/skills" ] || { echo "$fonte não parece a Fábrica: falta a pasta skills/" >&2; exit 1; }
     raiz="$(cd "$fonte" && pwd)"
   else
+    [ -n "$repo_url" ] || { echo "Sem origem configurada. Use: bash install.sh --fonte <pasta da Fábrica> (ou defina FABRICA_REPO_URL para um repositório privado)." >&2; exit 1; }
     command -v git >/dev/null 2>&1 || { echo "Preciso do git instalado para baixar a Fábrica." >&2; exit 1; }
     if [ -d "$casa/.git" ]; then
       # Só avança; nunca descarta mudança local de quem editou a cópia.

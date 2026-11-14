@@ -1,7 +1,12 @@
 # Fábrica
 
-O método para fundar um sistema autônomo open source, do zero até a primeira instalação real,
-sem repetir os erros já pagos nos produtos anteriores.
+O método para fundar um produto, do zero até a primeira implantação real, sem repetir os erros
+já pagos nos produtos anteriores.
+
+> **Esta é a versão do ThothAds, para produto fechado e pago.** Ela parte da Fábrica de
+> software livre (licença MIT, preservada em `LICENSE`) e foi adaptada. O que mudou está em
+> [`ADAPTACOES.md`](ADAPTACOES.md), e o histórico mostra cada capítulo alterado em relação
+> ao original, que é o primeiro commit.
 
 Isto não é um framework e não é um template de código. É o manual de como construir: as
 decisões que todo produto precisa tomar, a ordem em que se tomam, as regras que valem para
@@ -9,22 +14,23 @@ qualquer stack e o erro que originou cada regra.
 
 ## Começar
 
-Num terminal com um assistente de código (Claude Code, Codex, Cursor, OpenCode, Antigravity):
+Num terminal com um assistente de código (Claude Code, Codex, Cursor, OpenCode, Antigravity),
+dentro desta pasta:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/DeskLabs-OpenSource/Fabrica/main/install.sh | bash
+bash install.sh --fonte .
 ```
 
-Precisa de `bash` e `git` (Linux, macOS ou WSL). Isso baixa a Fábrica em `~/.desklabs/fabrica`
-e liga duas skills ao seu assistente. Abra uma
-sessão nova e diga o que quer:
+Precisa de `bash` (Linux, macOS ou WSL). Isso liga duas skills desta cópia ao seu assistente,
+sem baixar nada. Não rode o instalador do original público: ele traz a Fábrica sem as
+adaptações. Abra uma sessão nova e diga o que quer:
 
 | Você diz | O que acontece |
 |---|---|
 | "Usa a Fábrica para fundar um produto: *a sua ideia*" | A skill `fabrica-fundar` conduz as dez fases, começando por três perguntas a você |
 | "Audita este projeto pela Fábrica" | A skill `fabrica-auditar` mede o repositório contra a lista de conformidade e, se você pedir, o faz convergir |
 
-Rodar o comando de novo atualiza. Para desfazer: `bash ~/.desklabs/fabrica/install.sh --remover`.
+Para desfazer: `bash install.sh --remover`.
 
 Ou, sem instalar: clone este repositório, abra o assistente dentro dele e peça para seguir o
 [`AGENTS.md`](AGENTS.md).
@@ -59,7 +65,7 @@ sentido para o seu projeto, a resposta é "não se aplica", com o motivo.
 | Caminho | O que é |
 |---|---|
 | [`manual/00-o-metodo.md`](manual/00-o-metodo.md) | As dez fases de uma fundação, das entradas do dono à publicação |
-| `manual/01` a `manual/14` | Um capítulo por área: o que decidir, as regras, como cobrar, como saber que ficou pronto |
+| `manual/01` a `manual/15` | Um capítulo por área: o que decidir, as regras, como cobrar, como saber que ficou pronto |
 | [`licoes.md`](licoes.md) | O catálogo de erros medidos e a regra que cada um gerou |
 | [`conformidade.md`](conformidade.md) | A lista que diz se um produto segue a Fábrica, item por item, com o jeito de conferir |
 | [`referencia.md`](referencia.md) | Onde ver cada mecânica funcionando, e o que a referência ainda não cumpre |
@@ -82,10 +88,11 @@ sentido para o seu projeto, a resposta é "não se aplica", com o motivo.
 | 08 | Painel de administração | Regras e mecanismo |
 | 09 | Doutrinas | Método |
 | 10 | Contribuição | Regras e mecanismo |
-| 11 | Instalação | Regras e mecanismo |
-| 12 | Distribuição | Regras e mecanismo |
+| 11 | Instalação e implantação | Regras e mecanismo |
+| 12 | Entrega e versões | Regras e mecanismo |
 | 13 | Site | Método |
 | 14 | Equipe autônoma | Método |
+| 15 | Contas de anúncio de clientes | Regras (não provadas) |
 
 ## O que não tem aqui, de propósito
 

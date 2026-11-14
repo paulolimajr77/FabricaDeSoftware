@@ -10,15 +10,10 @@ fase com o portão aberto, e não deduz o que é decisão do dono.
 
 ## Antes de tudo
 
-**Ache a Fábrica.** Ela está em `${FABRICA_HOME:-$HOME/.desklabs/fabrica}`. Se você está lendo
-este arquivo de dentro de um clone dela, use esse clone. Se não há nenhum dos dois, instale:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/DeskLabs-OpenSource/Fabrica/main/install.sh | bash
-```
-
-Rode o mesmo comando para atualizar antes de começar uma fundação nova: o manual muda a cada
-fundação concluída.
+**Ache a Fábrica.** Neste produto ela é a pasta `fabrica/`, ao lado de `app/`, e é a versão
+adaptada para produto fechado. Leia `ADAPTACOES.md` antes de qualquer capítulo: onde ele diz
+"não se aplica" ou "decidido diferente", vale o que ele diz. **Nunca baixe a Fábrica de um
+endereço público**: o original não tem as adaptações, e instalá-lo por cima desfaz o trabalho.
 
 **Leia, nesta ordem, antes de responder qualquer coisa de conteúdo:**
 

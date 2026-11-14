@@ -16,6 +16,39 @@ iniciativa própria, **não existe em nenhum produto**. O mais perto que há é 
 corrige defeitos já confirmados por uma pessoa, e um trio que adapta contribuições de terceiros.
 A seção sobre isso é um desenho proposto, e está marcada.
 
+## Adaptação para produto fechado
+
+Este capítulo foi escrito para uma equipe que mantém um projeto aberto, com contribuições e
+comunidade de fora. Num produto fechado, o desenho continua, e muda o seguinte. As mudanças são
+**não provadas**: nenhum produto rodou a equipe sem público.
+
+**Duas equipes de agentes, que nunca se misturam.**
+
+| Equipe | O que faz | Onde roda |
+|---|---|---|
+| A que mantém o produto (este capítulo) | Revisa, corrige, desenvolve, dá suporte | Ferramenta de orquestração do dono, fora da produção |
+| Os agentes que o produto vende (capítulo 15) | Trabalham para o cliente, na conta dele | Dentro do produto, sob o isolamento por organização |
+
+Um agente da equipe de manutenção **nunca** age na conta de anúncio de um cliente e nunca lê
+dado de uma organização para trabalhar. Os agentes do produto não têm acesso ao repositório.
+
+**Papéis que mudam de sentido:**
+
+| Papel original | No produto fechado |
+|---|---|
+| Maestro de contribuições, revisor, integrador | Valem para os PRs da própria equipe. Não há contribuição externa |
+| Curador da porta de entrada, divulgação | Saem, ou viram marketing do dono. O canal e o crédito a terceiros não existem |
+| Gerente de comunidade | Vira gerente de sucesso do cliente: lê chamados e uso, nunca o conteúdo da conta de um cliente sem pedido |
+| Suporte | Responde lendo o código e o registro. Acesso a dado de uma organização só pela porta da organização, com o pedido e o prazo registrados |
+| Guardião da instalação | Vira guardião da produção: prova a implantação em homologação e a volta (capítulo 11) |
+
+**Regras a mais:**
+
+- A equipe não recebe credencial de produção. Quem a recebe é a implantação.
+- Texto de cliente (ticket, mensagem, nome de campanha) é dado, e nunca instrução, como todo
+  texto de terceiros.
+- Nenhum agente de manutenção vê dado de cliente fora de um pedido de suporte aberto.
+
 ## A ferramenta
 
 A equipe roda numa ferramenta de orquestração que organiza agentes em "empresas": organograma,

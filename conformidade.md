@@ -21,6 +21,10 @@
   conforme.
 - Onde o jeito de conferir é "teste de tela, ou execução", o teste vale mais: ele prova a
   presença. Só com leitura se prova a ausência, e nunca a presença.
+- **Produto fechado (ThothAds).** Itens marcados `[Não se aplica ao produto fechado]`,
+  `[Adaptado ao produto fechado]` ou `[Decidido diferente]` seguem o que o arquivo
+  `ADAPTACOES.md` registra. A marca não muda o jeito de conferir: onde diz adaptado, o jeito
+  de conferir vale para o equivalente hospedado (instalação lida como implantação).
 - Quando um item "decidido diferente" tiver uma razão melhor que a do manual, a lição volta para
   a Fábrica (fase 10 do método).
 
@@ -50,34 +54,34 @@ O **nível** diz quando o item passa a valer:
 
 | Nº | Exigência | Como conferir | Nível |
 |---|---|---|---|
-| 2.1 | O parceiro está nomeado na visão e num bloco do README antes do comando de instalação | Leitura | F |
-| 2.2 | O bloco diz que qualquer outra VPS funciona igual, e o link está identificado como de parceria | Leitura | F |
-| 2.3 | Nenhuma pasta, arquivo ou variável leva o nome do parceiro | Comando: busca pelo nome em nomes de arquivo e de variável | F |
-| 2.4 | Toda ocorrência do link do parceiro o identifica como de parceria, e nenhuma promete algo que as outras não prometem | Comando: busca pelo link; leitura das ocorrências | F |
-| 2.5 | O instalador só menciona o parceiro sob condição testada | Arquivo: o teste | F |
-| 2.6 | "Caminho genérico nunca sabotado" e "sem recurso pago" são regras de produto escritas | Leitura do documento de governança | F |
-| 2.7 | Telemetria: nenhuma, ou só com consentimento declarado no README. Todo contato que o produto faz sozinho com fora (consulta de versões, busca de atualização) está listado no README, com o que envia | Leitura | F |
+| 2.1 | O parceiro está nomeado na visão e num bloco do README antes do comando de instalação **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura | F |
+| 2.2 | O bloco diz que qualquer outra VPS funciona igual, e o link está identificado como de parceria **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura | F |
+| 2.3 | Nenhuma pasta, arquivo ou variável leva o nome do parceiro **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Comando: busca pelo nome em nomes de arquivo e de variável | F |
+| 2.4 | Toda ocorrência do link do parceiro o identifica como de parceria, e nenhuma promete algo que as outras não prometem **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Comando: busca pelo link; leitura das ocorrências | F |
+| 2.5 | O instalador só menciona o parceiro sob condição testada **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo: o teste | F |
+| 2.6 | "Caminho genérico nunca sabotado" e "sem recurso pago" são regras de produto escritas **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura do documento de governança | F |
+| 2.7 | Telemetria: nenhuma, ou só com consentimento declarado no README. Todo contato que o produto faz sozinho com fora (consulta de versões, busca de atualização) está listado no README, com o que envia **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Leitura | F |
 | 2.8 | Existe guia de custos: quais contas, como estimar, como o produto mede e limita | Arquivo | F |
-| 2.9 | Existe guia do implementador | Arquivo | F |
+| 2.9 | Existe guia do implementador **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo | F |
 | 2.10 | Todo custo que o produto origina e consegue medir aparece na tela e respeita um teto do operador. O que ele não mede (a VPS, a conta de um fornecedor) está dito no guia de custos | Execução, ou o teste que prova | F |
 | 2.16 | Todo caminho que gasta com provedor tem teto somado (por organização e período, ou de simultâneos), além do teto por unidade | Leitura; execução | F |
-| 2.17 | O roteiro de instalação para assistente começa pelo passo zero (tem servidor? se não, o parceiro, declarado), e ele está no README, no documento de autoridade e na skill de instalação | Leitura dos três | F |
-| 2.18 | O endereço do parceiro tem uma grafia só no repositório, vinda de um arquivo de dados do kit | Arquivo: a cerca | F |
-| 2.19 | Um assistente que recebe só o endereço do repositório e "me ajuda a instalar, não tenho servidor" chega ao link do parceiro e o declara como de parceria | Execução: uma sessão nova de assistente, sem contexto | F |
-| 2.11 | Marca própria é configuração em tempo de execução e sobrevive à atualização | Execução | C: quando houver revenda com marca |
-| 2.12 | O guia do implementador responde: quanto cobrar (método), quem paga os provedores, como prever o gasto, contrato, capacidade da máquina, acesso do cliente, a quem recorrer | Leitura | F |
+| 2.17 | O roteiro de instalação para assistente começa pelo passo zero (tem servidor? se não, o parceiro, declarado), e ele está no README, no documento de autoridade e na skill de instalação **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura dos três | F |
+| 2.18 | O endereço do parceiro tem uma grafia só no repositório, vinda de um arquivo de dados do kit **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo: a cerca | F |
+| 2.19 | Um assistente que recebe só o endereço do repositório e "me ajuda a instalar, não tenho servidor" chega ao link do parceiro e o declara como de parceria **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Execução: uma sessão nova de assistente, sem contexto | F |
+| 2.11 | Marca própria é configuração em tempo de execução e sobrevive à atualização **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Execução | C: quando houver revenda com marca |
+| 2.12 | O guia do implementador responde: quanto cobrar (método), quem paga os provedores, como prever o gasto, contrato, capacidade da máquina, acesso do cliente, a quem recorrer **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura | F |
 | 2.13 | O custo mensal do caminho recomendado está estimado, com o método, e diz onde cada limite gratuito acaba | Leitura do guia de custos | F |
 | 2.15 | O custo mensal foi medido em uso real, e o guia traz o número com a data | Leitura | C: depois da primeira instalação em produção de alguém de fora do projeto |
-| 2.14 | Há um caso real documentado, e a lista do que é suportado em produção | Arquivo | C: depois da primeira instalação em produção de alguém de fora do projeto |
+| 2.14 | Há um caso real documentado, e a lista do que é suportado em produção **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo | C: depois da primeira instalação em produção de alguém de fora do projeto |
 
 ## 3. Stack — capítulo 03
 
 | Nº | Exigência | Como conferir | Nível |
 |---|---|---|---|
 | 3.1 | Cada escolha estrutural tem registro de decisão com alternativas descartadas e custos | Arquivo | F |
-| 3.2 | O sistema sobe sem conta em serviço de terceiros | Execução: instalação limpa | F |
+| 3.2 | O sistema sobe sem conta em serviço de terceiros **[Decidido diferente: ver `ADAPTACOES.md`]** | Execução: instalação limpa | F |
 | 3.3 | Dependências de terceiros com versão fixa, inclusive a base de cada imagem que o projeto constrói | Leitura do arquivo de composição e da primeira linha de cada `Dockerfile` | F |
-| 3.4 | Memória e disco do sistema parado, medidos na VPS da instalação real, estão registrados com o tamanho da máquina | Leitura do registro da instalação real | F |
+| 3.4 | Memória e disco do sistema parado, medidos na VPS da instalação real, estão registrados com o tamanho da máquina **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Leitura do registro da instalação real | F |
 | 3.5 | A peça de maior risco técnico rodou antes de o desenho ser fechado: num produto irmão, ou sozinha numa VPS | Registro de decisão | F |
 
 ## 4. Design system — capítulo 04
@@ -195,74 +199,74 @@ O **nível** diz quando o item passa a valer:
 | Nº | Exigência | Como conferir | Nível |
 |---|---|---|---|
 | 10.1 | Repositório em organização | Comando | F |
-| 10.2 | `CONTRIBUTING`, `GOVERNANCE`, `CREDITS`, `SECURITY`, `CODE_OF_CONDUCT` | Arquivo | F |
+| 10.2 | `CONTRIBUTING`, `GOVERNANCE`, `CREDITS`, `SECURITY`, `CODE_OF_CONDUCT` **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo | F |
 | 10.3 | Regras de produto com o porquê de cada uma | Leitura | F |
 | 10.4 | Formato de pedido de decisão com padrão e prazo | Leitura | F |
 | 10.5 | Proteção do ramo: aprovação de quem não escreveu, e fila de merge. Com um mantenedor só, está registrado quem revisa (um agente revisor distinto de quem implementou conta), e o parecer fica no próprio PR: revisão que só existe numa conversa entre sessões não se confere | Comando; registro; leitura dos PRs mesclados | F |
 | 10.6 | Skill de contribuição com pré-voo que só mede e hooks que barram o irreversível | Arquivo | F |
-| 10.7 | As ferramentas do contribuidor medem contra o repositório original | Leitura dos scripts | F |
-| 10.8 | Acolhida automática que não avalia e não baixa código de fora | Arquivo: workflow e cerca | F |
-| 10.9 | O modelo de contribuição diz o que é trabalho do projeto | Leitura | F |
+| 10.7 | As ferramentas do contribuidor medem contra o repositório original **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura dos scripts | F |
+| 10.8 | Acolhida automática que não avalia e não baixa código de fora **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo: workflow e cerca | F |
+| 10.9 | O modelo de contribuição diz o que é trabalho do projeto **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura | F |
 | 10.10 | Fonte das skills em pasta neutra; espelhos gerados e conferidos | Arquivo: a cerca | F |
-| 10.11 | Procedimento de triagem com medidor, reprodutor e cético | Arquivo | C: quando a fila passar do que os mantenedores leem |
-| 10.12 | Está publicado quem responde, em quanto tempo e por qual canal | Leitura | F |
+| 10.11 | Procedimento de triagem com medidor, reprodutor e cético **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo | C: quando a fila passar do que os mantenedores leem |
+| 10.12 | Está publicado quem responde, em quanto tempo e por qual canal **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura | F |
 | 10.13 | A configuração do robô de dependências diz o que fazer com versões maiores e respeita o piso declarado | Leitura | F |
 
 ## 11. Instalação — capítulo 11
 
 | Nº | Exigência | Como conferir | Nível |
 |---|---|---|---|
-| 11.1 | Instalação em uma linha, num servidor recém-criado | Registro da instalação real, com evidência | F |
+| 11.1 | Instalação em uma linha, num servidor recém-criado **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Registro da instalação real, com evidência | F |
 | 11.2 | Nenhum passo pede editar arquivo | Execução | F |
 | 11.3 | Rodar o instalador de novo não muda nada | Execução | F |
 | 11.4 | Modo de ensaio e modo sem perguntas | Comando | F |
 | 11.5 | Nenhum script diz que deu certo sem conferir pelo caminho do usuário | Leitura, script por script | F |
 | 11.6 | A saúde tem linha por ligação entre peças, e código de saída por gravidade | Execução | F |
-| 11.7 | O instalador grava com dono e permissão explícitos o que outro serviço lê | Leitura | F |
+| 11.7 | O instalador grava com dono e permissão explícitos o que outro serviço lê **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Leitura | F |
 | 11.8 | Backup conferido por restauração; restauração conferida por contagem | Execução | F |
-| 11.9 | Atualização com backup, saúde e volta automática, exercitada entre duas versões | Execução: uma atualização que quebra de propósito | L |
+| 11.9 | Atualização com backup, saúde e volta automática, exercitada entre duas versões **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Execução: uma atualização que quebra de propósito | L |
 | 11.10 | Diagnóstico com segredos mascarados | Execução | F |
-| 11.11 | Proxy já existente é detectado | Execução | F |
+| 11.11 | Proxy já existente é detectado **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Execução | F |
 | 11.12 | A versão em execução se vê de fora | Execução | F |
-| 11.13 | Instalado na VPS do parceiro **e** em outra | Registro da instalação real, com evidência das duas | F |
+| 11.13 | Instalado na VPS do parceiro **e** em outra **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Registro da instalação real, com evidência das duas | F |
 | 11.14 | Erro do kit diz a causa e o próximo comando | Leitura | F |
 | 11.15 | Nenhum padrão do instalador aponta para recurso que não sustenta produção sem avisar | Leitura | F |
 | 11.16 | O instalador termina conferindo que a tela de entrada aceita o usuário criado | Execução | F |
-| 11.17 | O README declara os ambientes em que a instalação é provada, e o que fazer nos outros | Leitura | F |
+| 11.17 | O README declara os ambientes em que a instalação é provada, e o que fazer nos outros **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura | F |
 | 11.18 | Os segredos são separados por quem usa; a aplicação não recebe a senha de dono do banco | Leitura | F |
-| 11.19 | O kit recusa rodar de uma pasta que não é a da instalação | Execução | F |
-| 11.20 | Toda porta que o instalador publica tem um uso que funciona naquele modo de instalação; o que não tem uso fica só local | Leitura do instalador, modo por modo | F |
-| 11.21 | O CI roda o instalador de verdade, com contêineres, num ambiente descartável, até o usuário criado entrar | Leitura do workflow | F |
-| 11.22 | Sem domínio, o padrão do instalador não publica a tela de entrada sem conexão segura | Leitura; teste do kit | F |
-| 11.23 | Tudo o que o navegador usa chega pela mesma origem do painel. Se houver uma segunda porta, a tela testa o alcance dela e nomeia o que falta | Leitura do proxy e do instalador; teste de tela | F |
-| 11.24 | Existe uma entrada que roda no computador da pessoa, antes do servidor: o que é preciso, o tamanho da máquina, o parceiro declarado, o comando seguinte | Arquivo; execução | F |
-| 11.25 | Opção passada num modo em que não tem efeito para a instalação com erro; o valor é validado em todo modo; o endereço anunciado no fim é o que foi testado | Teste do kit: a opção em cada modo; leitura da mensagem final | F |
+| 11.19 | O kit recusa rodar de uma pasta que não é a da instalação **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Execução | F |
+| 11.20 | Toda porta que o instalador publica tem um uso que funciona naquele modo de instalação; o que não tem uso fica só local **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Leitura do instalador, modo por modo | F |
+| 11.21 | O CI roda o instalador de verdade, com contêineres, num ambiente descartável, até o usuário criado entrar **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Leitura do workflow | F |
+| 11.22 | Sem domínio, o padrão do instalador não publica a tela de entrada sem conexão segura **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Leitura; teste do kit | F |
+| 11.23 | Tudo o que o navegador usa chega pela mesma origem do painel. Se houver uma segunda porta, a tela testa o alcance dela e nomeia o que falta **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Leitura do proxy e do instalador; teste de tela | F |
+| 11.24 | Existe uma entrada que roda no computador da pessoa, antes do servidor: o que é preciso, o tamanho da máquina, o parceiro declarado, o comando seguinte **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo; execução | F |
+| 11.25 | Opção passada num modo em que não tem efeito para a instalação com erro; o valor é validado em todo modo; o endereço anunciado no fim é o que foi testado **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Teste do kit: a opção em cada modo; leitura da mensagem final | F |
 
 ## 12. Distribuição — capítulo 12
 
 | Nº | Exigência | Como conferir | Nível |
 |---|---|---|---|
-| 12.1 | Nenhum serviço de produção sem imagem publicada | Arquivo: a cerca | F |
-| 12.2 | O instalador recusa, com erro claro, instalar uma versão publicada que não tem imagem. Depois da primeira versão, construir na VPS só acontece pedido de propósito (uma opção com nome), e o instalador diz o que custa e por que não há imagem (arquitetura sem imagem publicada, versão de desenvolvimento, emergência) | Leitura do instalador | F |
-| 12.3 | A instalação grava número de versão, e não canal, e o código instalado é o da mesma versão das imagens | Execução | F |
+| 12.1 | Nenhum serviço de produção sem imagem publicada **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo: a cerca | F |
+| 12.2 | O instalador recusa, com erro claro, instalar uma versão publicada que não tem imagem. Depois da primeira versão, construir na VPS só acontece pedido de propósito (uma opção com nome), e o instalador diz o que custa e por que não há imagem (arquitetura sem imagem publicada, versão de desenvolvimento, emergência) **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Leitura do instalador | F |
+| 12.3 | A instalação grava número de versão, e não canal, e o código instalado é o da mesma versão das imagens **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Execução | F |
 | 12.4 | O nome da imagem e o formato da versão têm uma fonte só | Leitura | F |
-| 12.5 | Imagens para as arquiteturas declaradas. Declarar menos arquiteturas do que o produto já suportou pede registro de decisão | Leitura do workflow e do README | F |
+| 12.5 | Imagens para as arquiteturas declaradas. Declarar menos arquiteturas do que o produto já suportou pede registro de decisão **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Leitura do workflow e do README | F |
 | 12.6 | Etiqueta só nasce no CI, do ramo principal: a publicação de imagens recusa etiqueta cujo commit não está no ramo principal, e o repositório restringe quem cria etiqueta de versão | Leitura do workflow; comando | F |
 | 12.7 | Notas por fragmento, com o efeito no operador; número calculado | Arquivo: a cerca | F |
 | 12.8 | "Exige ação" é um bloco do fragmento, com o passo exato | Leitura | F |
 | 12.9 | Versão cortada inteira pelo CI, com o ramo principal verde | Execução | L |
 | 12.10 | Documentação e tela nos idiomas declarados | Leitura | F |
 | 12.11 | O "como fazer" mora no repositório, e o roteiro de corte de versão inclui conferi-lo | Leitura | F |
-| 12.12 | Quem administra atualiza pela tela: versão em execução, versão nova, o que mudou, um botão, e o resultado | Teste de tela, ou execução | L |
-| 12.13 | O aplicativo só registra o pedido; quem atualiza é um agente do kit no servidor, que lê um sim ou não | Leitura | L |
-| 12.14 | Um pedido de atualização por vez, com prazo: pedido aceito e não concluído vira falha visível | Leitura; teste | L |
-| 12.15 | Falha de comunicação do agente fica num registro que persiste, e a tela diz que o agente não está respondendo | Leitura; execução | L |
-| 12.16 | As imagens publicadas baixam sem credencial, numa máquina que nunca entrou no registro | Execução | L |
+| 12.12 | Quem administra atualiza pela tela: versão em execução, versão nova, o que mudou, um botão, e o resultado **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Teste de tela, ou execução | L |
+| 12.13 | O aplicativo só registra o pedido; quem atualiza é um agente do kit no servidor, que lê um sim ou não **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura | L |
+| 12.14 | Um pedido de atualização por vez, com prazo: pedido aceito e não concluído vira falha visível **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura; teste | L |
+| 12.15 | Falha de comunicação do agente fica num registro que persiste, e a tela diz que o agente não está respondendo **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura; execução | L |
+| 12.16 | As imagens publicadas baixam sem credencial, numa máquina que nunca entrou no registro **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Execução | L |
 | 12.17 | O passo que cria a etiqueta decide pelo commit que mudou a versão nas notas, e não depende de ser o último envio ao ramo principal, nem de o PR de versão entrar como um commit só (ou o repositório só aceita squash) | Leitura do workflow e da configuração de merge | L |
-| 12.18 | A página da versão só é publicada depois de as imagens baixarem sem credencial | Leitura do workflow | L |
+| 12.18 | A página da versão só é publicada depois de as imagens baixarem sem credencial **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura do workflow | L |
 | 12.19 | Quando a atualização troca um arquivo de configuração montado num contêiner, ela faz o contêiner ler o novo (reinício ou recarga), na ida e na volta | Teste do kit contando os dois caminhos; numa instalação real, a configuração em uso é a nova | F |
 | 12.20 | O corte de versão confere os documentos de entrada (README, documento de autoridade, skill de instalar, roteiro de quem chega): nenhuma frase de estado contradiz o que a versão entrega | Leitura do PR de versão: a conferência está registrada nele | L |
-| 12.21 | A saída inteira de cada atualização, pela tela ou pelo terminal, fica num arquivo no servidor, com a mesma máscara de segredos, permissão só do dono e rotação; a tela diz onde ele está | Leitura do agente e do atualizador; o arquivo numa instalação real depois de uma atualização | L |
+| 12.21 | A saída inteira de cada atualização, pela tela ou pelo terminal, fica num arquivo no servidor, com a mesma máscara de segredos, permissão só do dono e rotação; a tela diz onde ele está **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura do agente e do atualizador; o arquivo numa instalação real depois de uma atualização | L |
 
 ## 13. Método — capítulo 00
 
@@ -288,17 +292,17 @@ página de instalar e as notas de versão dependem dela, e antes da divulgação
 | 14.1 | O site mora em repositório separado do produto | Comando | L |
 | 14.2 | As notas de versão são lidas do produto, e a página falha alto se a leitura falhar | Leitura | L |
 | 14.3 | O corte de versão do produto reprova se a versão não aparecer no site | Leitura do workflow | L |
-| 14.4 | Os comandos e requisitos da página de instalar são os do kit, por leitura, geração ou teste de paridade | Arquivo: o teste, ou o gerador | L |
-| 14.5 | Toda skill do produto tem entrada na página de guias, por geração ou teste de paridade | Arquivo: o teste, ou o gerador | L |
+| 14.4 | Os comandos e requisitos da página de instalar são os do kit, por leitura, geração ou teste de paridade **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo: o teste, ou o gerador | L |
+| 14.5 | Toda skill do produto tem entrada na página de guias, por geração ou teste de paridade **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo: o teste, ou o gerador | L |
 | 14.6 | Todo conteúdo copiado do produto tem teste de paridade rodando no CI do site, e a última execução dele está verde | Leitura do CI | L |
-| 14.7 | Números sociais são lidos da fonte | Leitura | L |
+| 14.7 | Números sociais são lidos da fonte **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Leitura | L |
 | 14.8 | A data de atualização vem de uma constante só | Comando: busca | L |
 | 14.9 | O conteúdo está no texto servido, sem depender de script | Execução: a página com scripts desligados | L |
-| 14.10 | Existe o arquivo de resumo para assistentes, com o passo zero | Arquivo | L |
-| 14.11 | O parceiro aparece declarado, com marcação de link patrocinado e o mesmo endereço do repositório | Leitura | L |
+| 14.10 | Existe o arquivo de resumo para assistentes, com o passo zero **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Arquivo | L |
+| 14.11 | O parceiro aparece declarado, com marcação de link patrocinado e o mesmo endereço do repositório **[Não se aplica ao produto fechado: ver `ADAPTACOES.md`]** | Leitura | L |
 | 14.12 | Os idiomas têm a mesma estrutura, obrigada por tipo e por teste. Com um idioma só, não se aplica | Arquivo: o teste | L |
 | 14.13 | Existe o contrato de marca do site | Arquivo | L |
-| 14.14 | O curso é capturado do aplicativo real, com dados fictícios, procedência por foto e recibo de publicação | Leitura do roteiro e do recibo | L. Pode ficar para depois da divulgação se o desenho disser quando |
+| 14.14 | O curso é capturado do aplicativo real, com dados fictícios, procedência por foto e recibo de publicação **[Adaptado ao produto fechado: ver `ADAPTACOES.md`]** | Leitura do roteiro e do recibo | L. Pode ficar para depois da divulgação se o desenho disser quando |
 
 ## 15. Equipe autônoma — capítulo 14
 
@@ -329,3 +333,29 @@ quem revisa o que entra. O 15.6 vale com ou sem equipe.
 | 15.16 | Existe o procedimento de atualização da ferramenta, e a versão do assistente dos agentes é fixada | Arquivo | L |
 | 15.17 | Há observador de mercado, com relatório datado e fontes | Leitura | C: quando o roteiro depender do mercado |
 | 15.18 | Desenvolvimento autônomo: o dono aprova o roteiro em lote; uma funcionalidade por vez; caminho sensível passa pelo dono; quem constrói não verifica | Leitura; registro de uma funcionalidade | C: quando a equipe de manutenção passar um mês estável |
+
+
+## 16. Contas de anúncio de clientes — capítulo 15
+
+Seção para produto que age na conta de terceiro do cliente. **Todos os itens são não provados:**
+nenhum produto rodou este capítulo, e por isso o nível F aqui significa "antes de o primeiro
+cliente ligar uma conta", e não "antes de o código ir a público".
+
+| Nº | Exigência | Como conferir | Nível |
+|---|---|---|---|
+| 16.1 | O acesso à conta do terceiro é pedido com o menor escopo que a etapa precisa, e o de escrita é um segundo acesso | Leitura dos escopos pedidos | F |
+| 16.2 | Token de terceiro cifrado em repouso, por organização; nunca em log, endereço, erro ou resposta | Teste de schema e cerca de log | F |
+| 16.3 | Toda conta nova nasce no nível A. Subir de nível é ato do cliente na tela; cair é imediato. O nível C não aparece sem decisão escrita do dono | Execução; leitura | F |
+| 16.4 | Toda escrita no terceiro passa por um plano de mutação com valor antigo, valor novo, evidência e desfazer | Leitura do contrato; teste | F |
+| 16.5 | Tetos por organização (verba total, variação por mudança, mudanças por dia, lista de intocáveis); o produto recusa mudança acima do teto mesmo com plano correto | Teste | F |
+| 16.6 | Aprovação humana tem identidade, vale só para o plano exato e não é herdada | Teste | F |
+| 16.7 | Quem executa não verifica: verificador independente confere no provedor, e divergência pausa o nível B da organização | Leitura; execução | F |
+| 16.8 | Toda mudança se desfaz pelo produto, ou o plano diz que não e ela fica fora dos níveis A e B | Execução | F |
+| 16.9 | Registro de auditoria só de acréscimo, por organização, visível ao cliente | Teste de schema; execução | F |
+| 16.10 | Item de auditoria só termina em passou, falhou, desconhecido ou não se aplica; "desconhecido" nunca é adivinhado | Leitura do contrato; teste | F |
+| 16.11 | Controlador conflitante na plataforma é detectado e declarado; o produto não escreve no que ela controla | Execução com conta de teste | F |
+| 16.12 | Agente do produto só vê a organização da sessão; teste de isolamento passa por todas as rotas e ferramentas de agente | Teste com duas organizações | F |
+| 16.13 | O provedor simulado cumpre o contrato do real, incluindo limite de taxa, erro, atraso e fim de orçamento; nunca se testa contra conta real de cliente | Leitura; teste | F |
+| 16.14 | Está escrito que dado de conta vai para o provedor de IA, qual, e o que é encurtado antes do envio | Leitura | F |
+| 16.15 | Existe pausa geral por organização e do produto inteiro, e foi exercitada | Execução | F |
+| 16.16 | Incidente tem dono, prazo e comunicação ao cliente nos termos de uso | Leitura | L |

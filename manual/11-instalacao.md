@@ -1,225 +1,211 @@
-# 11. Instalação
+# 11. Instalação e implantação
 
-> Quem instala numa VPS é o usuário, e a experiência de instalar é o produto. Uma mudança que
-> funciona na máquina de quem desenvolve e quebra numa instalação nova é defeito de produto.
+> O produto é hospedado pelo dono, e ninguém mais o instala. O que na versão aberta era a
+> experiência de instalar vira aqui a implantação em produção e o cadastro de um novo cliente.
+> As regras de fundo continuam: nada é dado como pronto sem conferir, e uma mudança que funciona
+> na máquina de quem desenvolve e quebra no ambiente real é defeito de produto.
+>
+> **Estado:** capítulo reescrito para produto fechado. Os erros citados vêm dos dois primeiros
+> produtos, que eram instalados por terceiros; a prova de que cada regra vale também para
+> implantação hospedada é **não provada** até o primeiro produto fechado rodar.
 
 ## A promessa
 
-Uma pessoa que não programa entra numa VPS recém-criada, cola uma linha, responde poucas
-perguntas e chega a um painel funcionando. Daí em diante, tudo é pela tela.
+Duas, e as duas são do dono:
 
-*Por que isso pesa tanto:* instalação e erros depois dela foram a reclamação mais repetida do
-público do primeiro produto, à frente de qualquer recurso.
+1. **Implantar uma versão nova em produção** sem derrubar o serviço, com volta automática se
+   quebrar.
+2. **Entrar um cliente novo** do cadastro até a primeira tela útil, sem passo manual do dono.
 
 ## Decisões a registrar
 
 | Decisão | Ponto de partida |
 |---|---|
-| Que perguntas o instalador faz | Domínio, nome da empresa, nome, e-mail e senha do dono. Nada além |
-| Que arquiteturas de processador são suportadas | As duas comuns em VPS, desde a primeira versão |
-| O que acontece se a VPS já tem um proxy | O instalador detecta e se adapta |
-| A atualização volta sozinha se quebrar? | Sim |
-| Atualizar pela tela ou pelo terminal | Os dois. A tela é obrigatória (capítulo 12); o terminal é o caminho de reserva |
-| Onde fica o backup | Na máquina, com aviso de que copiar para fora é de quem opera |
+| Quais ambientes existem | Produção e homologação, no mínimo. Homologação roda a mesma implantação que a produção |
+| Onde o produto roda | Decisão de stack (capítulo 03). Um registro de decisão diz o que o dono assume operar |
+| Como se implanta | Por script do repositório, sem passo manual. Nada de editar arquivo na máquina |
+| A implantação volta sozinha se quebrar? | Sim |
+| Onde fica o backup, e quem o confere | Fora da máquina de produção, conferido por restauração |
+| Como entra um cliente novo | Cadastro cria a organização, o dono da organização e o primeiro acesso, sem intervenção |
 
-## O kit
+## O que existe
 
-Uma pasta com nome genérico (`install/`), sem o nome do parceiro (capítulo 02).
+Uma pasta com nome genérico (`deploy/`), no repositório do produto.
 
-| Script | Faz | Confere antes de dizer que deu certo |
+| Peça | Faz | Confere antes de dizer que deu certo |
 |---|---|---|
-| Entrada de uma linha | Baixa o repositório e abre o instalador | — |
-| Instalador | Confere a máquina e a rede, pergunta, gera os segredos, sobe tudo, cria o primeiro usuário | Cada peça essencial respondendo |
+| Implantação | Constrói ou baixa a imagem, aplica as migrations, troca a versão | Cada peça essencial respondendo |
 | Checagem de saúde | Uma linha por peça e por ligação entre peças | Não resume |
 | Backup | Copia o banco e a configuração | Restaura num banco de rascunho e conta as linhas |
-| Restauração | Substitui o banco por um backup, com confirmação digitada | Compara as contagens com o manifesto do backup |
-| Atualizador | Backup, troca de versão, migrations, saúde | Se uma peça essencial não responde, volta e restaura |
-| Diagnóstico | Gera um arquivo para enviar a quem vai ajudar | Segredos mascarados, dados pessoais encurtados |
-| Recuperação de senha | Troca a senha do dono de dentro do servidor | Encerra as sessões |
-| Testes do kit | Rodam sem Docker | Saem com erro se algo falhar |
+| Restauração | Substitui o banco por um backup, com confirmação digitada | Compara as contagens com o manifesto |
+| Volta | Retorna à versão anterior e restaura o banco | A saúde passa de novo |
+| Diagnóstico | Gera um arquivo para análise interna | Segredos mascarados, dados pessoais encurtados |
+| Recuperação de acesso | Troca a senha de um dono de dentro do servidor | Encerra as sessões |
+| Cadastro de cliente | Cria organização, dono e primeiro acesso | A tela de entrada aceita o usuário criado |
+| Testes do kit | Rodam sem depender do ambiente real | Saem com erro se algo falhar |
 
 ## As regras
 
-### 1. Nada que exija editar arquivo na VPS
+### 1. Nada que exija editar arquivo na máquina
 
-Nem na instalação, nem na atualização, nem para ligar um recurso. Variável nova nasce com
-padrão, ou é o atualizador que a acrescenta. O arquivo de ambiente só guarda o que o instalador
-gera.
+Nem na implantação, nem para ligar um recurso. Variável nova nasce com padrão, ou é a
+implantação que a acrescenta. O arquivo de ambiente só guarda o que a implantação gera.
 
 *Como se cobra:* uma cerca reprova variável de ambiente sem padrão que não esteja na lista do
-que o instalador gera.
+que a implantação gera.
 
 ### 2. Rodar de novo não quebra nada
 
-O instalador retoma de onde parou e nunca troca um segredo que já existe. Se um valor precisa
-mudar (endereço novo, domínio novo), roda-se o instalador de novo.
-
-Ele tem um modo que mostra o que faria sem alterar nada, e um modo sem perguntas, que lê as
-respostas de variáveis. O segundo é o que torna o instalador testável.
+A implantação retoma de onde parou e nunca troca um segredo que já existe. Ela tem um modo que
+mostra o que faria sem alterar nada, e um modo sem perguntas, que torna o processo testável.
 
 ### 3. "Pronto" só depois de conferir
 
-Nenhum script do kit diz que deu certo sem ter verificado o resultado.
+Nenhum script diz que deu certo sem ter verificado o resultado.
 
 *Os erros:* no primeiro produto, o instalador dizia "concluído" com o site fora do ar; o backup
 dizia "concluído" sem parte dos dados; a restauração dizia "restaurado" sem restaurar.
 
-A conferência usa o mesmo caminho que o usuário vai usar. Um contêiner "saudável" por uma
+A conferência usa o mesmo caminho que o cliente vai usar. Um contêiner "saudável" por uma
 verificação interna não prova que o domínio responde.
 
 ### 4. A saúde confere as ligações, e nunca resume
 
-Cada peça de pé não significa que elas se falam. A checagem de saúde tem uma linha para cada
-peça e uma para cada ligação entre peças.
-
-Três estados: funcionando, aviso (falta configurar, não é defeito) e falha. O código de saída
+Cada peça de pé não significa que elas se falam. A checagem tem uma linha para cada peça e uma
+para cada ligação entre peças, com três estados: funcionando, aviso e falha. O código de saída
 distingue falha de peça essencial de falha de peça secundária, para servir a monitoramento.
 
 *O erro:* na primeira instalação real do segundo produto, todos os serviços estavam de pé e um
 não conseguia ler o que o outro gravava. A capacidade central não funcionava, e nada dizia.
 
-### 5. O instalador grava com permissão explícita
+### 5. A implantação grava com permissão explícita
 
-Tudo o que um serviço vai ler é gravado pelo instalador com dono e permissão declarados. Não se
-depende da configuração da máquina nem do usuário que rodou.
+Tudo o que um serviço vai ler é gravado com dono e permissão declarados. Não se depende da
+configuração da máquina nem do usuário que rodou.
 
-*O erro:* é o defeito da primeira instalação real do segundo produto. Quem instalava tinha
-restringido as permissões padrão da sessão, para proteger um arquivo de senha, e o instalador
-herdou. Um servidor endurecido daria o mesmo resultado. Nenhum teste viu, porque os testes do
-kit usam um substituto do Docker.
+*O erro:* quem instalava tinha restringido as permissões padrão da sessão, e o instalador
+herdou. Nenhum teste viu, porque os testes usavam um substituto do Docker.
 
-*Como se cobra:* o teste do kit roda o instalador com as permissões padrão restritas.
+*Como se cobra:* o teste do kit roda a implantação com as permissões padrão restritas.
 
 ### 6. Segredos separados por quem usa
 
-O instalador gera os segredos e os divide em arquivos, para cada contêiner receber só o que
-usa. A aplicação não recebe a senha de dono do banco.
+Os segredos são divididos para cada serviço receber só o que usa. A aplicação não recebe a senha
+de dono do banco. A senha de um usuário nunca passa como argumento de comando.
 
-A senha do primeiro usuário nunca passa como argumento de comando.
+Segredos de contas de terceiros dos clientes (capítulo 15) seguem uma regra a mais: cifrados em
+repouso, por organização, e nunca em registro de log.
 
-### 7. Atualização com backup antes e volta automática
+### 7. A implantação tem backup antes e volta automática
 
-O atualizador faz backup, troca a versão, aplica as migrations e confere a saúde. Se uma peça
-essencial não responde, volta para a versão anterior e restaura o banco.
+Faz backup, troca a versão, aplica as migrations e confere a saúde. Se uma peça essencial não
+responde, volta para a versão anterior e restaura o banco.
 
 *O erro:* no primeiro produto, atualizações deixaram instalações presas numa página de
 manutenção, e houve atualização sem backup.
 
-**O atualizador que roda é o da versão antiga.** Por isso o CI testa a atualização a partir da
-última versão publicada, e não só a partir do código atual (lição E3).
+**Migração com dados de clientes.** Num produto hospedado, o banco de produção sempre tem dados
+de organizações. O CI aplica a mudança sobre um banco da última versão, com dados (lição A3),
+e uma migração que não se desfaz é decisão registrada antes de ir a produção.
 
-### 8. Uma instalação, um dono dos contêineres
+### 8. Uma implantação por vez
 
-Duas cópias do repositório na mesma máquina, as duas mandando nos mesmos contêineres, derrubam
-o serviço. O kit confere de qual pasta a instalação foi feita e recusa rodar de outra.
+Duas implantações simultâneas no mesmo ambiente derrubam o serviço. A implantação confere uma
+trava e recusa rodar se já há uma em curso.
 
-### 9. O que o instalador chama é testado pela linha de comando
+### 9. O que a implantação chama é testado pela linha de comando
 
-Um comando usado pelo instalador é testado como o instalador o chama, com os argumentos de
-verdade. O teste da função interna não vê o erro de argumento.
+Um comando usado pelo script é testado como o script o chama, com os argumentos de verdade. O
+teste da função interna não vê o erro de argumento.
 
 ### 10. A versão em execução se vê de fora
 
-Uma rota pública diz que versão está rodando, lendo o que está em execução. A tela de versão
-não afirma "é a mais recente" com dado guardado.
+Uma rota diz que versão está rodando, lendo o que está em execução. Nenhuma tela afirma "é a
+mais recente" com dado guardado.
 
 ### 11. A mensagem de erro diz a causa e o próximo passo
 
-Toda falha do kit termina com o que aconteceu e o comando a rodar. Um defeito de infraestrutura
-nunca aparece para o usuário como outra coisa: no primeiro produto, o banco sobrecarregado
-aparecia como "e-mail ou senha incorretos".
+Toda falha termina com o que aconteceu e o comando a rodar. Um defeito de infraestrutura nunca
+aparece para o cliente como outra coisa: no primeiro produto, o banco sobrecarregado aparecia
+como "e-mail ou senha incorretos".
 
-### 12. Proxy já existente
+### 12. Toda porta publicada tem uso, e o navegador usa uma origem só
 
-Muitas VPS já têm um proxy reverso. O instalador detecta e usa um arquivo de composição
-adicional. Todo comando posterior carrega os dois arquivos; o kit faz isso por uma função só,
-para ninguém esquecer.
-
-### 17. Toda porta publicada tem uso
-
-Cada porta que o instalador abre para fora serve a algo que funciona naquele modo de
-instalação. Se num modo a capacidade não funciona (sem conexão segura, por exemplo), a porta
-dela fica só local nesse modo.
-
-### 18. Uma origem só para o navegador
-
-Tudo o que a tela usa chega pelo mesmo endereço do painel, encaminhado pelo proxy. Uma segunda
-porta parece barata e cobra em todo modo de instalação: o proxy do operador precisa de mais uma
-regra, o túnel de mais um redirecionamento, o firewall de mais uma liberação.
+Cada porta aberta para fora serve a algo que funciona. Tudo o que a tela usa chega pelo mesmo
+endereço do painel, encaminhado pelo proxy.
 
 *O erro:* no segundo produto, o dono abriu o painel por túnel com uma porta só. A capacidade
 nova usava outra, e a tela respondeu "confira sua internet".
 
-### 19. Uma porta de entrada para quem ainda não tem servidor
+### 13. Configuração inválida é recusada, e nunca ignorada
 
-O instalador roda dentro da VPS. Antes dele existe uma pergunta que trava quem está começando:
-"o que eu preciso ter para instalar isso?". O kit traz uma entrada que roda no computador da
-pessoa, antes de existir servidor: diz o que é preciso, nomeia o tamanho da máquina, abre o
-link do parceiro dizendo o que ele é (capítulo 02, regra 14), e entrega o comando seguinte.
+Um valor ou uma opção que o ambiente não vai obedecer faz a implantação falhar, nomeando a
+opção. O valor é validado em todo modo. O endereço que a implantação anuncia no fim é o que ela
+testou.
 
-Dentro da VPS, o instalador não oferece o parceiro a quem já está instalando: a pessoa já tem
-servidor. No máximo uma linha no fim, e só quando há certeza de que a máquina é de outro
-provedor (capítulo 02, regra 4).
+*O erro:* no segundo produto, uma opção ignorada em silêncio publicou o painel para fora.
 
-### 20. Opção que o instalador não vai obedecer, ele recusa
+### 14. A implantação termina provando que a pessoa entra
 
-Uma opção passada num modo em que ela não tem efeito para a instalação com erro, nomeando a
-opção e o modo. O valor é validado em todo modo, e não só naquele em que é usado. No segundo
-produto, quem pediu o painel só local numa máquina com as portas livres teve a opção ignorada em
-silêncio, e o painel foi publicado para fora: a opção só existia para o caso de as portas
-serem de outro proxy.
+A última coisa é conferir que a tela de entrada abre e aceita um usuário de teste. O mesmo vale
+para o cadastro de cliente novo: termina conferindo que o dono da organização entra.
 
-O endereço que o instalador anuncia no fim é o que ele testou. Se a porta está publicada e não
-foi alcançada de fora, a mensagem diz isso em vez de dar o endereço como certo.
+*O erro:* na comunidade do primeiro produto, o relato era "a instalação conclui e a tela de
+login nunca abre".
 
-### 13. O instalador termina provando que a pessoa entra
+### 15. Cadastro de cliente é automático e isolado
 
-A última coisa que o instalador faz é conferir que a tela de entrada abre e aceita o usuário
-que ele acabou de criar. É a regra 3 levada até o fim: na comunidade do primeiro produto, o
-relato era "a instalação conclui e a tela de login nunca abre".
+Criar uma organização não toca em nenhuma outra. O cadastro cria a organização, o dono e o
+primeiro acesso, e o teste de isolamento (capítulo 07) roda com a organização recém-criada.
 
-### 14. Os ambientes suportados são declarados
+**Não provado:** os dois produtos eram instalados, e não hospedavam várias organizações novas por
+dia. A regra vem do capítulo 07 e espera o primeiro produto.
 
-O README diz em que ambientes a instalação é provada. Para os outros (outro painel de
-hospedagem, máquina local, outra arquitetura), diz o que se sabe e o que fazer. Quem instala
-fora do caminho único não fica sem saída.
+### 16. O que o cliente pulou no cadastro tem lugar na tela
 
-### 15. O que foi pulado na instalação tem lugar na tela
-
-Se a pessoa pulou uma credencial ou uma resposta, existe um lugar evidente no painel para
+Se o cliente pulou uma credencial ou uma resposta, existe um lugar evidente no painel para
 informar depois.
 
-### 16. O padrão do instalador sustenta produção
+### 17. O padrão do ambiente sustenta produção
 
-Nenhum padrão do instalador aponta para um recurso que não aguenta uso real sem dizer isso na
-mesma tela (capítulo 02, regra 13).
+Nenhum padrão aponta para um recurso que não aguenta uso real sem dizer isso na mesma tela
+(capítulo 02, regra 4).
 
-## Como o kit é provado
+## Como a implantação é provada
 
 | Nível | O que prova | O que não prova |
 |---|---|---|
-| Testes do kit, com um substituto do Docker | A lógica dos scripts: perguntas, retomada, validações | Nada sobre a máquina real |
-| CI: instalação do zero e atualização com dados | O banco chega ao mesmo estado pelos dois caminhos | Rede, permissões, proxy |
+| Testes do kit, com um substituto do ambiente | A lógica dos scripts: validações, retomada | Nada sobre o ambiente real |
+| CI: banco do zero e atualização com dados | O banco chega ao mesmo estado pelos dois caminhos | Rede, permissões, proxy |
 | CI: as imagens constroem e sobem | Os processos iniciam | Que se falam |
-| **Primeira instalação real** | O produto que se distribui | — |
+| **Homologação** | O produto, implantado como em produção | — |
+| **Primeira implantação em produção** | O produto que o cliente usa | — |
 
-O último nível é a fase 8 do método, e não tem substituto. No segundo produto ele achou o que
-os três primeiros deixaram passar.
-
-Meta, ainda não alcançada em nenhum dos dois produtos: uma instalação limpa numa VPS de verdade
-como portão de cada versão, numa máquina que não é a do parceiro e em cada arquitetura
-suportada.
+Os dois últimos níveis são a fase 8 do método, e não têm substituto.
 
 ## Como saber que ficou pronto
 
-- Uma pessoa que não programa instalou seguindo só o README.
-- A instalação foi feita na VPS do parceiro **e** em outra.
-- O instalador foi rodado duas vezes seguidas sem efeito na segunda.
+- A implantação rodou duas vezes seguidas sem efeito na segunda.
 - Um backup foi restaurado em outra máquina e o sistema voltou.
-- Uma atualização que quebra de propósito voltou sozinha.
+- Uma implantação que quebra de propósito voltou sozinha.
 - A checagem de saúde acusou uma ligação cortada de propósito.
+- Um cliente de teste foi cadastrado do zero e entrou, sem passo manual.
+
+## O que este capítulo não resolve
+
+- Escolha do provedor de hospedagem e de pagamento.
+- Plano de continuidade (o que acontece se a máquina de produção cair e como se volta).
+- Retenção dos dados de um cliente que cancela.
+
+## O que mudou em relação à versão aberta
+
+Saíram: a entrada de uma linha, as perguntas ao instalador, o proxy já existente, a arquitetura
+de processador do cliente, a porta de entrada para quem não tem servidor, e todo o papel do
+parceiro. Entraram: ambientes, cadastro automático de cliente, migração com dados, trava de
+implantação. O texto da versão aberta está no primeiro commit deste repositório.
 
 ## Origem
 
 Kit de instalação e primeira instalação real do DeskVoice; kit, doutrina de empacotamento e
-issues de instalação do DeskcommCRM; comentários do público do primeiro produto.
+issues de instalação do DeskcommCRM. Regras 8, 15 e 16: adaptação para produto hospedado, sem
+erro medido ainda.

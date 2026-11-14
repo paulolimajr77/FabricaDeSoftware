@@ -3,6 +3,13 @@
 > Para qualquer assistente de código que vá fundar um produto com esta Fábrica, auditar um
 > produto contra ela, ou alterar a própria Fábrica. O `CLAUDE.md` só importa este arquivo.
 
+## Esta é a versão do ThothAds
+
+Esta cópia foi adaptada para produto fechado e pago. **Leia [`ADAPTACOES.md`](ADAPTACOES.md)
+antes de tudo:** onde ele diz "não se aplica" ou "decidido diferente", vale o que ele diz, e
+onde este arquivo fala em parceiro de distribuição, instalação por terceiros ou projeto
+aberto, leia como "não se aplica". Nunca baixe a Fábrica de endereço público.
+
 ## O que você tem em mãos
 
 Um manual de método, e não um template. Você não copia código daqui para o produto novo: você
